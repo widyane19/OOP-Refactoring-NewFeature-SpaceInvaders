@@ -26,8 +26,8 @@ public class ImageSelection {
     }
 
     private static Image loadImage(String imageType, String defaultResourcePath) {
-        String imageUrl = JOptionPane.showInputDialog(null,
-                "Enter URL for " + imageType + " image (or leave blank for default):");
+        //String imageUrl = JOptionPane.showInputDialog(null,
+        //        "Enter URL for " + imageType + " image (or leave blank for default):");
 
         // Need to handle case where url is not an image, ie a png or jpeg.
         if (imageUrl != null && !imageUrl.isEmpty()) {
@@ -62,4 +62,37 @@ public class ImageSelection {
 
         return null;
     }
+    public void setShooterImage(String resourcePath) {
+        try {
+            shooterImage = ImageIO.read(ImageSelection.class.getResource(resourcePath));
+        } catch (IOException e) {
+            GameExceptions.showErrorDialog("Failed to load shooter image: " + e.getMessage());
+        }
+    }
+    public void setShooterImageFromURL(String url) throws IOException {
+        try {
+            shooterImage = ImageIO.read(new URI(url).toURL());
+        } catch (Exception e) {
+            throw new IOException(e);
+        }
+    }
+
+    public void setInvaderImage(String resourcePath) {
+        try {
+            invaderImage = ImageIO.read(ImageSelection.class.getResource(resourcePath));
+        } catch (IOException e) {
+            GameExceptions.showErrorDialog("Failed to load invader image: " + e.getMessage());
+        }
+    }
+
+    public void setInvaderImageFromURL(String url) throws IOException {
+        try {
+            invaderImage = ImageIO.read(new URI(url).toURL());
+        } catch (Exception e) {
+            throw new IOException(e);
+        }
+    }   
 }
+
+
+
