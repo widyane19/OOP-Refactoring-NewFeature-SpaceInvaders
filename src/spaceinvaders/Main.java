@@ -1,8 +1,8 @@
 package spaceinvaders;
 
 import javax.swing.JFrame;
-import javax.swing.*;
-
+import javax.swing.SwingUtilities;
+import spaceinvaders.ui.SpaceInvadersUI;
 
 public class Main {
     public static void main(String[] args) {
