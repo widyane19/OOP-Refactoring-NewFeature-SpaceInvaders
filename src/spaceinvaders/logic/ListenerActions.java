@@ -1,8 +1,11 @@
-package spaceinvaders;
+package spaceinvaders.logic;
 
 import java.awt.*;
 import java.awt.event.*;
 import java.util.Iterator;
+import spaceinvaders.ui.SpaceInvadersUI;
+import spaceinvaders.model.InvaderBox;
+import spaceinvaders.model.Bullet;
 
 public class ListenerActions {
 

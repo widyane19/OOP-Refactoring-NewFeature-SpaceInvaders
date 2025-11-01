@@ -1,4 +1,4 @@
-package spaceinvaders;
+package spaceinvaders.media;
 
 import java.awt.*;
 import java.io.IOException;

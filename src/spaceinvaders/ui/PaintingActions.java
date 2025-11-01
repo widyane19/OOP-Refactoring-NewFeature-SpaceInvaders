@@ -1,6 +1,8 @@
-package spaceinvaders;
+package spaceinvaders.ui;
 
 import java.awt.*;
+import spaceinvaders.model.InvaderBox;
+import spaceinvaders.model.Bullet;
 
 public class PaintingActions {
 
