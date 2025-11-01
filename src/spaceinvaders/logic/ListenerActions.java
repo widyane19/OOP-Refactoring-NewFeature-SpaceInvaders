@@ -1,8 +1,11 @@
-package spaceinvaders;
+package spaceinvaders.logic;
 
 import java.awt.*;
 import java.awt.event.*;
 import java.util.Iterator;
+import spaceinvaders.model.Bullet;
+import spaceinvaders.model.InvaderBox;
+import spaceinvaders.ui.SpaceInvadersUI;
 
 public class ListenerActions {
 
@@ -20,13 +23,13 @@ public class ListenerActions {
         // Add new falling invaderboxs randomly
         if (game.random.nextInt(100) < 2) {
             int x = game.random.nextInt(game.getWidth());
-            game.invaderboxes.add(game.new InvaderBox(x, 0, 40)); // Example size 40
+            game.invaderboxes.add(new InvaderBox(x, 0, 40)); // Example size 40
         }
 
         // Move invaderboxes down
-        Iterator<SpaceInvadersUI.InvaderBox> invaderboxIterator = game.invaderboxes.iterator();
+        Iterator<InvaderBox> invaderboxIterator = game.invaderboxes.iterator();
         while (invaderboxIterator.hasNext()) {
-            SpaceInvadersUI.InvaderBox invaderbox = invaderboxIterator.next();
+            InvaderBox invaderbox = invaderboxIterator.next();
             invaderbox.y += 2;
             if (invaderbox.y > game.getHeight()) {
                 invaderboxIterator.remove(); // Remove invaderboxes that go off the screen
@@ -34,9 +37,9 @@ public class ListenerActions {
         }
 
         // Move bullets up
-        Iterator<SpaceInvadersUI.Bullet> bulletIterator = game.bullets.iterator();
+        Iterator<Bullet> bulletIterator = game.bullets.iterator();
         while (bulletIterator.hasNext()) {
-            SpaceInvadersUI.Bullet bullet = bulletIterator.next();
+            Bullet bullet = bulletIterator.next();
             bullet.y -= 5;
             if (bullet.y < 0) {
                 bulletIterator.remove(); // Remove bullets that go off the screen
@@ -46,10 +49,10 @@ public class ListenerActions {
         // Check for bullet-invaderbox collisions
         bulletIterator = game.bullets.iterator();
         while (bulletIterator.hasNext()) {
-            SpaceInvadersUI.Bullet bullet = bulletIterator.next();
+            Bullet bullet = bulletIterator.next();
             invaderboxIterator = game.invaderboxes.iterator();
             while (invaderboxIterator.hasNext()) {
-                SpaceInvadersUI.InvaderBox invaderbox = invaderboxIterator.next();
+                InvaderBox invaderbox = invaderboxIterator.next();
                 if (new Rectangle(bullet.x - 5, bullet.y, 10, 10).intersects(
                         new Rectangle(invaderbox.x, invaderbox.y, invaderbox.size, invaderbox.size))) {
                     bulletIterator.remove();
@@ -74,7 +77,7 @@ public class ListenerActions {
             int shooter_width = game.getShooterWidth();
             int shooter_height = game.getShooterHeight();
             game.bullets.add(
-                    game.new Bullet(shooter_X_Coordinate + shooter_width / 2, game.getHeight() - shooter_height));
+                    new Bullet(shooter_X_Coordinate + shooter_width / 2, game.getHeight() - shooter_height));
         }
     }
 

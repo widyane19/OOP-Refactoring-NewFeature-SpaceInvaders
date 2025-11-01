@@ -1,4 +1,4 @@
-package spaceinvaders;
+package spaceinvaders.media;
 
 import java.awt.*;
 import java.io.IOException;
@@ -21,8 +21,8 @@ public class ImageSelection {
     }
 
     public void setGameImages() {
-        shooterImage = loadImage("shooter", "./resources/ShooterImage.png");
-        invaderImage = loadImage("invader", "./resources/InvaderImage.png");
+        shooterImage = loadImage("shooter", "/spaceinvaders/resources/ShooterImage.png");
+        invaderImage = loadImage("invader", "/spaceinvaders/resources/InvaderImage.png");
     }
 
     private static Image loadImage(String imageType, String defaultResourcePath) {
@@ -32,7 +32,7 @@ public class ImageSelection {
         // Need to handle case where url is not an image, ie a png or jpeg.
         if (imageUrl != null && !imageUrl.isEmpty()) {
             try {
-                URI uri = new URI(imageUrl);
+                URI uri = new URI(imageUrl.trim()); //in case of accidental spaces
                 return ImageIO.read(uri.toURL());
             } catch (IllegalArgumentException e) {
                 GameExceptions.showErrorDialog(

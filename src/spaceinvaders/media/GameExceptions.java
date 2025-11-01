@@ -1,4 +1,4 @@
-package spaceinvaders;
+package spaceinvaders.media;
 
 import javax.swing.JOptionPane;
 

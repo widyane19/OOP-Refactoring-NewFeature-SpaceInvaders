@@ -1,6 +1,8 @@
-package spaceinvaders;
+package spaceinvaders.ui;
 
 import java.awt.*;
+import spaceinvaders.model.Bullet;
+import spaceinvaders.model.InvaderBox;
 
 public class PaintingActions {
 
@@ -19,16 +21,16 @@ public class PaintingActions {
 
     }
 
-    public void drawInvaders(Graphics g, java.util.List<SpaceInvadersUI.InvaderBox> invaderboxes, Image invaderboxImage,
+    public void drawInvaders(Graphics g, java.util.List<InvaderBox> invaderboxes, Image invaderboxImage,
             SpaceInvadersUI game) {
-        for (SpaceInvadersUI.InvaderBox invaderbox : invaderboxes) {
+        for (InvaderBox invaderbox : invaderboxes) {
             g.drawImage(invaderboxImage, invaderbox.x, invaderbox.y, invaderbox.size, invaderbox.size, game);
         }
     }
 
-    public void drawBullets(Graphics g, java.util.List<SpaceInvadersUI.Bullet> bullets) {
+    public void drawBullets(Graphics g, java.util.List<Bullet> bullets) {
         g.setColor(Color.YELLOW);
-        for (SpaceInvadersUI.Bullet bullet : bullets) {
+        for (Bullet bullet : bullets) {
             // Make the bullet into a triangle. Remember where the origin is on the game
             int[] xPoints = { bullet.x, bullet.x - 5, bullet.x + 5 };
             int[] yPoints = { bullet.y, bullet.y + 10, bullet.y + 10 };

@@ -1,10 +1,17 @@
-package spaceinvaders;
+package spaceinvaders.ui;
 
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.*;
+
+import spaceinvaders.logic.ListenerActions;
+import spaceinvaders.media.ImageSelection;
+import spaceinvaders.media.GameExceptions;
+import spaceinvaders.model.InvaderBox;
+import spaceinvaders.model.Bullet;
+
 
 public class SpaceInvadersUI extends JPanel implements ActionListener, KeyListener {
 
@@ -100,28 +107,5 @@ public class SpaceInvadersUI extends JPanel implements ActionListener, KeyListen
         shooter_X_Coordinate = shooter_X;
     }
 
-    // These are the characters or objects used in the game. Create a shooter class
-    // thing.
 
-    // Inner class representing falling invaderboxes
-    public class InvaderBox {
-        int x, y, size;
-
-        public InvaderBox(int x, int y, int size) {
-            this.x = x;
-            this.y = y;
-            this.size = size;
-        }
-    }
-
-    // Inner class representing bullets (bullets)
-    // Look for Java bullet class
-    public class Bullet {
-        int x, y;
-
-        public Bullet(int x, int y) {
-            this.x = x;
-            this.y = y;
-        }
-    }
 }
