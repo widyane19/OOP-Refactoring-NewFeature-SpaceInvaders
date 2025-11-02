@@ -31,6 +31,7 @@ public class SpaceInvadersUI extends JPanel implements ActionListener, KeyListen
     public enum BulletType { TRIANGLE, CIRCLE, SQUARE }
     public BulletType currentBulletType = BulletType.TRIANGLE;  
 
+    public boolean isShooting = false;
     // Constructor
     public SpaceInvadersUI() {
         //
@@ -58,6 +59,13 @@ public class SpaceInvadersUI extends JPanel implements ActionListener, KeyListen
     // ListenerActions and add overloading
     public void actionPerformed(ActionEvent e) {
         listenerActions.updatePositions(this);
+        // Handle continuous shooting
+        if (isShooting) {
+            int shooter_X_Coordinate = getShooter_X_Coordinate();
+            int shooter_width = getShooterWidth();
+            int shooter_height = getShooterHeight();
+            bullets.add(new Bullet(shooter_X_Coordinate + shooter_width / 2, getHeight() - shooter_height));
+        }
         repaint();
     }
 

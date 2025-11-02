@@ -73,11 +73,12 @@ public class ListenerActions {
             game.moveRight = true;
         }
         if (key == KeyEvent.VK_SPACE) {
-            int shooter_X_Coordinate = game.getShooter_X_Coordinate();
-            int shooter_width = game.getShooterWidth();
-            int shooter_height = game.getShooterHeight();
-            game.bullets.add(
-                    new Bullet(shooter_X_Coordinate + shooter_width / 2, game.getHeight() - shooter_height));
+            game.isShooting = true;// start shooting
+            //int shooter_X_Coordinate = game.getShooter_X_Coordinate();
+            //int shooter_width = game.getShooterWidth();
+            //int shooter_height = game.getShooterHeight();
+            //game.bullets.add(
+            //        new Bullet(shooter_X_Coordinate + shooter_width / 2, game.getHeight() - shooter_height));
         }
     }
 
@@ -89,5 +90,6 @@ public class ListenerActions {
         if (key == KeyEvent.VK_RIGHT) {
             game.moveRight = false;
         }
+        if (key == KeyEvent.VK_SPACE) game.isShooting = false; // stop shooting
     }
 }
