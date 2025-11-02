@@ -22,6 +22,7 @@ public class GameMenuBar extends JMenuBar {
         add(createInvaderMenu());
         add(createBulletMenu());
         add(createMusicMenu());
+        add(createSpeedMenu());
     }
 
     private JMenu createShooterMenu() {
@@ -44,6 +45,17 @@ public class GameMenuBar extends JMenuBar {
             }
         }));
         return shooterMenu;
+    }
+
+    private JMenu createSpeedMenu() {
+        JMenu speedMenu = new JMenu("Game Speed");
+
+        speedMenu.add(createMenuItem("Slow", () -> game.setGameSpeed(40)));
+        speedMenu.add(createMenuItem("Normal", () -> game.setGameSpeed(20)));
+        speedMenu.add(createMenuItem("Fast", () -> game.setGameSpeed(10)));
+        speedMenu.addSeparator();
+        speedMenu.add(createMenuItem("Reset", () -> game.setGameSpeed(20)));
+        return speedMenu;
     }
 
     private JMenu createInvaderMenu() {
