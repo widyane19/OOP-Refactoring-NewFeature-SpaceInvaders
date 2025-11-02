@@ -109,6 +109,10 @@ public class SpaceInvadersUI extends JPanel implements ActionListener, KeyListen
     public void setShooter_X_Coordinate(int shooter_X) {
         shooter_X_Coordinate = shooter_X;
     }
+    // Allow external classes (like GameMenuBar) to change the game speed safely
+    public void setGameSpeed(int delay) {
+        timer.setDelay(delay);
+    }
 
 
 }
