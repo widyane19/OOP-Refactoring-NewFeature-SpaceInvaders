@@ -27,6 +27,9 @@ public class SpaceInvadersUI extends JPanel implements ActionListener, KeyListen
     private int shooter_X_Coordinate = 200;
     public static int breakpointcounter = 0;
     public final MusicManager musicManager;
+    
+    public enum BulletType { TRIANGLE, CIRCLE, SQUARE }
+    public BulletType currentBulletType = BulletType.TRIANGLE;  
 
     // Constructor
     public SpaceInvadersUI() {
@@ -88,7 +91,7 @@ public class SpaceInvadersUI extends JPanel implements ActionListener, KeyListen
         paintingActions.drawInvaders(g, invaderboxes, imageSelection.getInvaderImage(), this);
 
         // Draw bullets (bullets)
-        paintingActions.drawBullets(g, bullets);
+        paintingActions.drawBullets(g, bullets, this);
     }
 
     public int getShooterWidth() {

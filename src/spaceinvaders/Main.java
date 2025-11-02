@@ -11,7 +11,7 @@ public class Main {
             JFrame frame = new JFrame("Space Invaders with Images");
             SpaceInvadersUI game = new SpaceInvadersUI();
             frame.add(game);
-            GameMenuBar menuBar = new GameMenuBar(game.imageSelection, game.musicManager);
+            GameMenuBar menuBar = new GameMenuBar(game, game.imageSelection, game.musicManager);
             frame.setJMenuBar(menuBar);//was: new GameMenuBar(game.imageSelection, game.musicManager)
 
             frame.setSize(600, 700);

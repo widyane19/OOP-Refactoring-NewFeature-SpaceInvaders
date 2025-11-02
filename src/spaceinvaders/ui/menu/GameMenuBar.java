@@ -4,12 +4,14 @@ import javax.swing.*;
 import spaceinvaders.media.GameExceptions;
 import spaceinvaders.media.ImageSelection;
 import spaceinvaders.media.MusicManager;
+import spaceinvaders.ui.SpaceInvadersUI;
 
 public class GameMenuBar extends JMenuBar {
     private final ImageSelection imageSelection;
     private final MusicManager musicManager;
-
-    public GameMenuBar(ImageSelection imageSelection, MusicManager musicManager) {
+    private final SpaceInvadersUI game;
+    public GameMenuBar(SpaceInvadersUI game, ImageSelection imageSelection, MusicManager musicManager) {
+        this.game = game;
         this.imageSelection = imageSelection;
         this.musicManager = musicManager;
         createMenus();
@@ -65,14 +67,14 @@ public class GameMenuBar extends JMenuBar {
         }));
         return invaderMenu;
     }
-
+    
     
     private JMenu createBulletMenu() {
         JMenu bulletMenu = new JMenu("Bullet Type");
 
-        bulletMenu.add(createMenuItem("Triangle", () -> {}));
-        bulletMenu.add(createMenuItem("Circle", () -> {}));
-        bulletMenu.add(createMenuItem("Square", () -> {}));
+        bulletMenu.add(createMenuItem("Triangle", () -> game.currentBulletType = SpaceInvadersUI.BulletType.TRIANGLE));
+        bulletMenu.add(createMenuItem("Circle", () -> game.currentBulletType = SpaceInvadersUI.BulletType.CIRCLE));
+        bulletMenu.add(createMenuItem("Square", () -> game.currentBulletType = SpaceInvadersUI.BulletType.SQUARE));
         bulletMenu.addSeparator();
         bulletMenu.add(createMenuItem("Custom URL...", () -> {
             String url = JOptionPane.showInputDialog("Enter bullet image URL:");

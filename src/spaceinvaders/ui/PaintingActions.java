@@ -28,13 +28,22 @@ public class PaintingActions {
         }
     }
 
-    public void drawBullets(Graphics g, java.util.List<Bullet> bullets) {
+    public void drawBullets(Graphics g, java.util.List<Bullet> bullets, SpaceInvadersUI game) {
         g.setColor(Color.YELLOW);
         for (Bullet bullet : bullets) {
             // Make the bullet into a triangle. Remember where the origin is on the game
-            int[] xPoints = { bullet.x, bullet.x - 5, bullet.x + 5 };
-            int[] yPoints = { bullet.y, bullet.y + 10, bullet.y + 10 };
-            g.fillPolygon(xPoints, yPoints, 3);
+            switch(game.currentBulletType){
+                case TRIANGLE -> {
+                    int[] xPoints = { bullet.x, bullet.x - 5, bullet.x + 5 };
+                    int[] yPoints = { bullet.y, bullet.y + 10, bullet.y + 10 };
+                    g.fillPolygon(xPoints, yPoints, 3);
+
+                }
+                case CIRCLE -> g.fillOval(bullet.x - 5, bullet.y, 10, 10);
+                case SQUARE -> g.fillRect(bullet.x - 5, bullet.y, 10, 10);
+            }
+            
+            
         }
     }
 }
