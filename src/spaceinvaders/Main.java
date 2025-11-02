@@ -11,11 +11,13 @@ public class Main {
             JFrame frame = new JFrame("Space Invaders with Images");
             SpaceInvadersUI game = new SpaceInvadersUI();
             frame.add(game);
-            frame.setJMenuBar(new GameMenuBar(game.imageSelection));
+            GameMenuBar menuBar = new GameMenuBar(game.imageSelection, game.musicManager);
+            frame.setJMenuBar(menuBar);//was: new GameMenuBar(game.imageSelection, game.musicManager)
 
             frame.setSize(600, 700);
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.setVisible(true);
+            
         });
     }
 }

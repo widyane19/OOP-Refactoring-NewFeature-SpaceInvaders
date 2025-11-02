@@ -3,12 +3,15 @@ package spaceinvaders.ui.menu;
 import javax.swing.*;
 import spaceinvaders.media.GameExceptions;
 import spaceinvaders.media.ImageSelection;
+import spaceinvaders.media.MusicManager;
 
 public class GameMenuBar extends JMenuBar {
     private final ImageSelection imageSelection;
+    private final MusicManager musicManager;
 
-    public GameMenuBar(ImageSelection imageSelection) {
+    public GameMenuBar(ImageSelection imageSelection, MusicManager musicManager) {
         this.imageSelection = imageSelection;
+        this.musicManager = musicManager;
         createMenus();
     }
 
@@ -89,23 +92,18 @@ public class GameMenuBar extends JMenuBar {
 
     private JMenu createMusicMenu() {
         JMenu musicMenu = new JMenu("Music");
-
-        musicMenu.add(createMenuItem("Music 1", () -> {}));
-        musicMenu.add(createMenuItem("Music 2", () -> {}));
-        musicMenu.add(createMenuItem("Music 3", () -> {}));
+        musicMenu.add(createMenuItem("Music 1", () -> musicManager.playMusic("/spaceinvaders/resources/Music1.wav")));
+        musicMenu.add(createMenuItem("Music 2", () -> musicManager.playMusic("/spaceinvaders/resources/Music2.wav")));
+        musicMenu.add(createMenuItem("Music 3", () -> musicManager.playMusic("/spaceinvaders/resources/Music3.wav")));
         musicMenu.addSeparator();
         musicMenu.add(createMenuItem("Custom URL...", () -> {
-            String url = JOptionPane.showInputDialog("Enter music URL:");
+            String url = javax.swing.JOptionPane.showInputDialog("Enter music URL:");
             if (url != null && !url.isBlank()) {
-                try {
-                    // Placeholder for future: call SpaceInvadersUI to play music
-                    GameExceptions.showErrorDialog("Custom music not implemented yet");
-                } catch (Exception e) {
-                    GameExceptions.showErrorDialog("Invalid URL: " + e.getMessage());
-                }
+                musicManager.playMusic(url);
             }
         }));
-
+        musicMenu.addSeparator();
+        musicMenu.add(createMenuItem("Off", () -> musicManager.stopMusic()));
         return musicMenu;
     }
 
