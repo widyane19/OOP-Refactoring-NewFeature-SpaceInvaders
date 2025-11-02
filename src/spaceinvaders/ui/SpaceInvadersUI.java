@@ -5,12 +5,11 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.*;
-
 import spaceinvaders.logic.ListenerActions;
 import spaceinvaders.media.ImageSelection;
-import spaceinvaders.media.GameExceptions;
-import spaceinvaders.model.InvaderBox;
+import spaceinvaders.media.MusicManager;
 import spaceinvaders.model.Bullet;
+import spaceinvaders.model.InvaderBox;
 
 
 public class SpaceInvadersUI extends JPanel implements ActionListener, KeyListener {
@@ -27,6 +26,10 @@ public class SpaceInvadersUI extends JPanel implements ActionListener, KeyListen
     private int shooter_height = 60;
     private int shooter_X_Coordinate = 200;
     public static int breakpointcounter = 0;
+    public final MusicManager musicManager;
+    
+    public enum BulletType { TRIANGLE, CIRCLE, SQUARE }
+    public BulletType currentBulletType = BulletType.TRIANGLE;  
 
     // Constructor
     public SpaceInvadersUI() {
@@ -40,7 +43,7 @@ public class SpaceInvadersUI extends JPanel implements ActionListener, KeyListen
         listenerActions = new ListenerActions();
         imageSelection = new ImageSelection();
         paintingActions = new PaintingActions();
-        // For debugging
+        musicManager = new MusicManager();
 
         // Set images
         imageSelection.setGameImages();
@@ -88,7 +91,7 @@ public class SpaceInvadersUI extends JPanel implements ActionListener, KeyListen
         paintingActions.drawInvaders(g, invaderboxes, imageSelection.getInvaderImage(), this);
 
         // Draw bullets (bullets)
-        paintingActions.drawBullets(g, bullets);
+        paintingActions.drawBullets(g, bullets, this);
     }
 
     public int getShooterWidth() {
