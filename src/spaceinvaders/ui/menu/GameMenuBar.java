@@ -1,9 +1,8 @@
 package spaceinvaders.ui.menu;
 
 import javax.swing.*;
-import java.awt.event.*;
-import spaceinvaders.media.ImageSelection;
 import spaceinvaders.media.GameExceptions;
+import spaceinvaders.media.ImageSelection;
 
 public class GameMenuBar extends JMenuBar {
     private final ImageSelection imageSelection;
@@ -64,13 +63,50 @@ public class GameMenuBar extends JMenuBar {
         return invaderMenu;
     }
 
-    // Placeholder for now
+    
     private JMenu createBulletMenu() {
-        return new JMenu("Bullet Type");
+        JMenu bulletMenu = new JMenu("Bullet Type");
+
+        bulletMenu.add(createMenuItem("Triangle", () -> {}));
+        bulletMenu.add(createMenuItem("Circle", () -> {}));
+        bulletMenu.add(createMenuItem("Square", () -> {}));
+        bulletMenu.addSeparator();
+        bulletMenu.add(createMenuItem("Custom URL...", () -> {
+            String url = JOptionPane.showInputDialog("Enter bullet image URL:");
+            if (url != null && !url.isBlank()) {
+                try {
+                    // For now just show an error since SpaceInvadersUI doesn't yet handle bullet images
+                    // Later: call SpaceInvadersUI to update bullet image
+                   GameExceptions.showErrorDialog("Custom bullet image not implemented yet");
+                } catch (Exception e) {
+                   GameExceptions.showErrorDialog("Invalid URL: " + e.getMessage());
+                }
+            }
+        }));
+
+        return bulletMenu;
     }
 
     private JMenu createMusicMenu() {
-        return new JMenu("Music");
+        JMenu musicMenu = new JMenu("Music");
+
+        musicMenu.add(createMenuItem("Music 1", () -> {}));
+        musicMenu.add(createMenuItem("Music 2", () -> {}));
+        musicMenu.add(createMenuItem("Music 3", () -> {}));
+        musicMenu.addSeparator();
+        musicMenu.add(createMenuItem("Custom URL...", () -> {
+            String url = JOptionPane.showInputDialog("Enter music URL:");
+            if (url != null && !url.isBlank()) {
+                try {
+                    // Placeholder for future: call SpaceInvadersUI to play music
+                    GameExceptions.showErrorDialog("Custom music not implemented yet");
+                } catch (Exception e) {
+                    GameExceptions.showErrorDialog("Invalid URL: " + e.getMessage());
+                }
+            }
+        }));
+
+        return musicMenu;
     }
 
     private JMenuItem createMenuItem(String title, Runnable action) {
